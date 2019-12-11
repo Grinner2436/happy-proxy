@@ -150,6 +150,61 @@ public class Fisher {
         return result;
     }
 
+    public List<HttpHost> yun(){
+        List<HttpHost> result = new ArrayList<>();
+        try {
+            String nextUrl = API.YUN_HTML;
+            for (int i = 1; i <= 10; i++) {
+                nextUrl = nextUrl + i;
+                Document doc = Jsoup.connect(nextUrl).get();
+                Elements trs = doc.select("tbody tr");
+                getResult(result,trs,Extractors.tdText(0),Extractors.tdInteger(1));
+                Thread.sleep(3000);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+    public List<HttpHost> proxyList(){
+        List<HttpHost> result = new ArrayList<>();
+        try {
+            String nextUrl = API.PROXY_LIST_HTML;
+            for (int i = 1; i <= 5; i++) {
+                nextUrl = nextUrl + i;
+                Document doc = Jsoup.connect(nextUrl).get();
+                Elements trs = doc.select("table.bg tbody tr:gt(1)");
+                getResult(result,trs,Extractors.tdText(1),Extractors.tdInteger(2));
+                Thread.sleep(3000);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public List<HttpHost> iphai(){
+        List<HttpHost> result = new ArrayList<>();
+        try {
+            String nextUrl = API.IPHAI_HTML;
+            Document doc = Jsoup.connect(nextUrl).get();
+            Elements trs = doc.select("tbody tr:gt(0)");
+            getResult(result,trs,Extractors.tdText(0),Extractors.tdInteger(1));
+
+            String free = API.IPHAI_FREE_HTML;
+            Document docFree = Jsoup.connect(free).get();
+            Elements freeTrs = docFree.select("tbody tr:gt(0)");
+            getResult(result,freeTrs,Extractors.tdText(0),Extractors.tdInteger(1));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
 
     public boolean wash(HttpHost proxy){
         RequestConfig config = RequestConfig.custom().setProxy(proxy).build();
@@ -157,12 +212,12 @@ public class Fisher {
         try(CloseableHttpClient httpClient = HttpClients.custom().setDefaultRequestConfig(config).build();
             CloseableHttpResponse response = httpClient.execute(httpget)) {
             HttpEntity entity = response.getEntity();
-            String entityString = EntityUtils.toString(entity);
+            String entityString = EntityUtils.toString(entity).trim();
             if(entityString.equals(proxy.getHostName())){
                 return true;
             }
         } catch (Exception e) {
-
+            System.out.println(e.getClass().getName());
         }
         return false;
     }

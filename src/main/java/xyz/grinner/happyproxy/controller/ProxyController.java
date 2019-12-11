@@ -1,6 +1,7 @@
 package xyz.grinner.happyproxy.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 import xyz.grinner.happyproxy.service.DispatcherService;
 
@@ -13,9 +14,15 @@ public class ProxyController {
     private DispatcherService dispatcherService;
 
     @ResponseBody
-    @GetMapping("/{site}")
-    public String getOneProxyOf(@PathVariable("site") String site){
+    @GetMapping("/")
+    public String getOneProxyOf(@Param("site") String site){
         return dispatcherService.getOneIp(site);
+    }
+
+    @ResponseBody
+    @GetMapping("/list")
+    public List<String> listAllProxy(){
+        return dispatcherService.getList(null);
     }
 
     @ResponseBody

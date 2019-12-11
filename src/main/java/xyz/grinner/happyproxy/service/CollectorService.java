@@ -21,7 +21,8 @@ public class CollectorService {
 
     private ConcurrentLinkedQueue<HttpHost> proxiesTobeCheck = new ConcurrentLinkedQueue<>();
 
-    @Scheduled(cron = "0 0/5 * * * ?")
+//    @Scheduled(cron = "0 /5 * * * ?")
+    @Scheduled(cron = "0 * * * * ?")
     public void checkAndSave(){
         while (!proxiesTobeCheck.isEmpty()){
             HttpHost httpHost = proxiesTobeCheck.poll();
@@ -57,28 +58,45 @@ public class CollectorService {
         proxiesTobeCheck.addAll(data);
     }
 
-    @Scheduled(cron = "0 0 0/1 * * ?")
-    public void xici(){
-        List<HttpHost> data  = fisher.xici();
-        proxiesTobeCheck.addAll(data);
-    }
-
-    @Scheduled(cron = "0 0 0/1 * * ?")
-    public void kuaidaili(){
-        List<HttpHost> data  = fisher.kuaidaili();
-        proxiesTobeCheck.addAll(data);
-    }
-
-    @Scheduled(cron = "0 0 0/1 * * ?")
-    public void liuliu(){
-        List<HttpHost> data  = fisher.liuliu();
-        proxiesTobeCheck.addAll(data);
-    }
-
     @Scheduled(cron = "0 0 * * * ?")
     public void crossin(){
         List<HttpHost> data  = fisher.crossin();
         proxiesTobeCheck.addAll(data);
     }
 
+    @Scheduled(cron = "0 0 * * * ?")
+    public void xici(){
+        List<HttpHost> data  = fisher.xici();
+        proxiesTobeCheck.addAll(data);
+    }
+
+    @Scheduled(cron = "0 0 * * * ?")
+    public void kuaidaili(){
+        List<HttpHost> data  = fisher.kuaidaili();
+        proxiesTobeCheck.addAll(data);
+    }
+
+    @Scheduled(cron = "0 0 * * * ?")
+    public void liuliu(){
+        List<HttpHost> data  = fisher.liuliu();
+        proxiesTobeCheck.addAll(data);
+    }
+
+    @Scheduled(cron = "0 0 * * * ?")
+    public void yun(){
+        List<HttpHost> data  = fisher.yun();
+        proxiesTobeCheck.addAll(data);
+    }
+
+    @Scheduled(cron = "0 0 * * * ?")
+    public void iphai(){
+        List<HttpHost> data  = fisher.iphai();
+        proxiesTobeCheck.addAll(data);
+    }
+
+    @Scheduled(cron = "0 0 * * * ?")
+    public void proxyList(){
+        List<HttpHost> data  = fisher.proxyList();
+        proxiesTobeCheck.addAll(data);
+    }
 }

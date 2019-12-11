@@ -96,7 +96,21 @@ public class PearlString<K,P> {
         }
     }
 
-    public List<P> getList(K k){
+    public List<P> getList(){
+        List<P> result = new ArrayList<>();
+        Pearl<K,P> head = firstInString;
+        if(head != null){
+            result.add(head.item);
+            Pearl<K,P> currentChecking = firstInString.nextInString;
+            while (currentChecking != null && currentChecking != firstInString){
+                result.add(currentChecking.item);
+                currentChecking = currentChecking.nextInString;
+            }
+        }
+        return result;
+    }
+
+    public List<P> getListOf(K k){
         List<P> result = new ArrayList<>();
         Pearl<K,P> headOfK = heads.get(k);
         if(headOfK != null){

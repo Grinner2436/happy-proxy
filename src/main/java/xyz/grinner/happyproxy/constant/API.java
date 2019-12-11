@@ -10,5 +10,8 @@ public class API {
     public static final String XICIDAILI_HTML= "https://www.xicidaili.com/nn/";
     public static final String KUAIDAILI_HTML= "https://www.kuaidaili.com/free/inha/1/";
     public static final String LIULIU_HTML= "http://www.66ip.cn/areaindex_{page}/1.html";
-    public static final String LIULIU_HTML= "http://www.ip3366.net/?stype=1&page=10";
+    public static final String YUN_HTML= "http://www.ip3366.net/?stype=1&page=";
+    public static final String IPHAI_HTML= "http://www.iphai.com/";
+    public static final String IPHAI_FREE_HTML= "http://www.iphai.com/free/ng";
+    public static final String PROXY_LIST_HTML= "https://list.proxylistplus.com/Fresh-HTTP-Proxy-List-";
 }

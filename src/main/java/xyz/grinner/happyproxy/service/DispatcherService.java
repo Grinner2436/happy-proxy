@@ -21,7 +21,10 @@ public class DispatcherService {
     }
 
     public List<String> getList(String site){
-        List<String> list = pool.getList(site);
-        return list;
+        if(site == null ){
+            return pool.getList();
+        }else{
+            return pool.getListOf(site);
+        }
     }
 }

@@ -44,9 +44,20 @@ class HappyProxyApplicationTests {
     void liuliu() {
         fisher.liuliu();
     }
+
     @Test
-    void goubanjia() {
-        fisher.goubanjia();
+    void yun() {
+        fisher.yun();
+    }
+
+    @Test
+    void iphai() {
+        fisher.iphai();
+    }
+
+    @Test
+    void proxyList() {
+        fisher.proxyList();
     }
 
 }
